@@ -1,0 +1,6 @@
+import{c as i,a as p}from"./index-BLjU3uQG.js";import{d as r,o as n,c as d,n as _,u as s,y as f,F as u,b as c,a as e}from"./app-DdL1Hlyz.js";import{_ as a}from"./Skeleton.vue_vue_type_script_setup_true_lang-CzRymHRU.js";/**
+ * @license lucide-vue-next v0.468.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const v=i("CircleCheckBigIcon",[["path",{d:"M21.801 10A10 10 0 1 1 17 3.335",key:"yps3ct"}],["path",{d:"m9 11 3 3L22 4",key:"1pflzl"}]]),g=r({__name:"CardFooter",props:{class:{}},setup(l){const t=l;return(o,k)=>(n(),d("div",{"data-slot":"card-footer",class:_(s(p)("flex items-center px-6 [.border-t]:pt-6",t.class))},[f(o.$slots,"default")],2))}}),m={class:"flex items-center space-x-4 w-full min-w-0"},h={class:"space-y-2 w-full"},w={class:"flex flex-col space-y-3 w-full"},x={class:"space-y-2 w-full"},F=r({__name:"SkeletonBox",setup(l){return(t,o)=>(n(),d(u,null,[c("div",m,[e(s(a),{class:"h-12 w-12 rounded-full shrink-0"}),c("div",h,[e(s(a),{class:"h-4 w-full"}),e(s(a),{class:"h-4 w-5/6"})])]),c("div",w,[e(s(a),{class:"h-[120px] w-full rounded-xl"}),c("div",x,[e(s(a),{class:"h-4 w-full"}),e(s(a),{class:"h-4 w-5/6"})])])],64))}});export{v as C,F as _,g as a};

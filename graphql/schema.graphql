@@ -1,0 +1,157 @@
+#TYPES MODEL
+type User {
+  id: String!
+  encrypted_id: String!
+  name: String!
+  email: String!
+  role: String!
+  created_at: String!
+  updated_at: String!
+}
+
+type Officials {
+  id: String!
+  encrypted_id: String!
+  name: String!
+  address: String!
+  position: String!
+  status: String!
+  photo: String!
+  created_at: String!
+  updated_at: String!
+  user: User @hasOne
+  
+}
+
+type Categories {
+  id: String!
+  encrypted_id: String!
+  category: String!
+  parentID: String!
+  created_at: String!
+  totalFiles: Int! @count(relation: "totalFiles")
+}
+
+type Files {
+  id: ID!
+  encrypted_id: String!
+  categoryID: String
+  municipalStatus: String
+  provincialStatus: String
+  title: String
+  authorID: String
+  firstReadingDate: String
+  secondReadingDate: String
+  thirdReadingDate: String
+  ordinanceNumber: String
+  finalTitle: String
+  enactmentDate: String
+  lceapprovalDate: String
+  transmittalDate: String
+  spslapprovalDate: String
+  postStatus: String
+  publishStatus: String
+  file: String
+  created_at: String
+  updated_at: String
+  category: Categories @hasOne
+  coAuthors: [CoAuthor]
+  author: Officials @hasOne
+}
+
+type CoAuthor {
+  id: ID!
+  encrypted_id: String!
+  fileID: String
+  officialID: String
+  official: Officials @hasOne
+}
+
+
+
+# TYPES CONTAINERS FOR PAGES
+
+type Welcome {
+  filesListPaginated: FilePagination!
+}
+
+type Dashboard {
+  adminsCount: Int
+  officialsCount: Int
+  categoriesCount: Int
+  filesCount: Int
+  files: [Files]
+}
+
+type Category {
+  categoriesList: [Categories!]!
+}
+
+type File {
+  categoryName: Categories!
+  filesListPaginated: FilePagination!
+  authors: [Officials!]!
+  subCategoriesList: [Categories!]!
+}
+
+type FilePagination {
+  data: [Files!]!
+  paginatorInfo: PaginatorInfo!
+}
+
+type PaginatorInfo {
+  currentPage: Int!
+  lastPage: Int!
+  perPage: Int!
+  total: Int!
+  hasMorePages: Boolean!
+}
+
+type ViewFile {
+  file: Files
+}
+
+#GUEST QUERY - WELCOME PAGE
+extend type Query {
+  welcome(page: Int, first: Int!, search: String): Welcome
+    @field(resolver: "App\\GraphQL\\Queries\\Guest\\Welcome")
+}
+
+# ADMIN QUERY - PAGES
+type Query @guard {
+  dashboard: Dashboard 
+    @field(resolver: "App\\GraphQL\\Queries\\Admin\\Dashboard")
+
+  admins: [User!]!
+    @field(resolver: "App\\GraphQL\\Queries\\Admin\\AdminManagement")
+
+  officials: [Officials!]!
+    @field(resolver: "App\\GraphQL\\Queries\\Admin\\ElectedOfficials")
+  
+  categories: Category
+    @field(resolver: "App\\GraphQL\\Queries\\Admin\\FileManager")
+
+  files(id: String!, page: Int, first: Int!, search: String): File
+    @field(resolver: "App\\GraphQL\\Queries\\Admin\\File")
+
+  viewFile(id: String!): ViewFile
+    @field(resolver: "App\\GraphQL\\Queries\\Admin\\ViewFile")
+}
+
+#USER QUERY - PAGES
+extend type Query @guard {
+  userdashboard: Dashboard 
+    @field(resolver: "App\\GraphQL\\Queries\\User\\Dashboard")
+
+  userofficials: [Officials!]!
+    @field(resolver: "App\\GraphQL\\Queries\\User\\ElectedOfficials")
+  
+  usercategories: Category
+    @field(resolver: "App\\GraphQL\\Queries\\User\\FileManager")
+
+  userfiles(id: String!, page: Int, first: Int!, search: String): File
+    @field(resolver: "App\\GraphQL\\Queries\\User\\File")
+
+  userviewFile(id: String!): ViewFile
+    @field(resolver: "App\\GraphQL\\Queries\\User\\ViewFile")
+}
