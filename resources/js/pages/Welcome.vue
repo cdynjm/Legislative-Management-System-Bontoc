@@ -137,7 +137,7 @@ const goToPreviousPage = () => {
             <nav class="flex items-center justify-between gap-4 w-full">
                 <!-- Logo + Labels -->
                 <div class="flex items-center gap-3">
-                    <img draggable="false" src="/app-logo.gif" alt="Logo" class="h-10 w-auto" />
+                    <img draggable="false" src="/app-logo.jpg" alt="Logo" class="h-10 w-auto" />
 
                     <!-- Labels -->
                     <div class="flex flex-col leading-tight">
@@ -181,7 +181,7 @@ const goToPreviousPage = () => {
                                 List of Ordinances
                             </div>
                             <div class="md:flex hidden">
-                                Municpality of Sogod
+                                Municipality of Bontoc
                             </div>
                         </CardDescription>
                     </div>

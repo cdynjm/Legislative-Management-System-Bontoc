@@ -128,7 +128,7 @@ const { isPending, data, error, isFetching } = useQuery({
                             Recent Ordinances
                         </div>
                         <div class="md:flex hidden">
-                            Municpality of Sogod
+                            Municipality of Bontoc
                         </div>
                     </CardDescription>
                 </div>
